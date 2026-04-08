@@ -19,7 +19,7 @@ public class DepartmentController {
 	private DepartmentService departmentService;
 
 	@GetMapping("list")
-	public ModelAndView list(ModelAndView view) {
+	public ModelAndView list(ModelAndView view) throws Exception {
 		List<DepartmentDTO> li = departmentService.list();
 		
 		// request와 비슷한 역할, Spring이 제공
@@ -30,8 +30,8 @@ public class DepartmentController {
 	}
 	
 	@GetMapping("detail")
-	public void detail(@RequestParam(name="num") String num, Model model) {
-		DepartmentDTO departmentDTO = departmentService.detail(num);
+	public void detail(DepartmentDTO departmentDTO, Model model) throws Exception {
+		departmentDTO = departmentService.detail(departmentDTO);
 		model.addAttribute("detail", departmentDTO);
 	}
 	
@@ -39,7 +39,7 @@ public class DepartmentController {
 	public void create() {}
 	
 	@PostMapping("create")
-	public String create(DepartmentDTO departmentDTO) {
+	public String create(DepartmentDTO departmentDTO) throws Exception {
 		
 		int result = departmentService.create(departmentDTO);
 		
@@ -47,7 +47,7 @@ public class DepartmentController {
 	}
 	
 	@PostMapping("delete")
-	public String delete(DepartmentDTO departmentDTO) {
+	public String delete(DepartmentDTO departmentDTO) throws Exception {
 		
 		int result = departmentService.delete(departmentDTO);
 		
@@ -55,15 +55,15 @@ public class DepartmentController {
 	}
 	
 	@GetMapping("update")
-	public void update(DepartmentDTO departmentDTO, Model model) {
+	public void update(DepartmentDTO departmentDTO, Model model) throws Exception {
 		
-		departmentDTO = departmentService.detail(departmentDTO.getDepartmentNo());
+		departmentDTO = departmentService.detail(departmentDTO);
 		model.addAttribute("update", departmentDTO);
 
 	}
 	
 	@PostMapping("update")
-	public String update(DepartmentDTO departmentDTO) {
+	public String update(DepartmentDTO departmentDTO) throws Exception {
 		
 		int result = departmentService.update(departmentDTO);
 

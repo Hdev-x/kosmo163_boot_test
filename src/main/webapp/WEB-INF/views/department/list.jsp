@@ -32,7 +32,7 @@
 											<tr>
 												<td>
 													<h5>
-														<a href="./detail?num=${l.departmentNo}">${l.departmentName}
+														<a href="./detail?departmentNo=${l.departmentNo}">${l.departmentName}
 													</h5>
 												</td>
 												<td>
